@@ -1,0 +1,68 @@
+Index: e-smith-flexbackup/e-smith-flexbackup.spec
+diff -u e-smith-flexbackup/root/etc/e-smith/events/actions/tape-restore-flexbackup:1.7 e-smith-flexbackup/root/etc/e-smith/events/actions/tape-restore-flexbackup:1.8
+--- e-smith-flexbackup/root/etc/e-smith/events/actions/tape-restore-flexbackup:1.7	Thu Jun 19 11:24:18 2003
++++ e-smith-flexbackup/root/etc/e-smith/events/actions/tape-restore-flexbackup	Tue Jul 19 15:46:21 2005
+@@ -1,7 +1,7 @@
+ #!/usr/bin/perl -w
+ 
+ #----------------------------------------------------------------------
+-# copyright (C) 1999-2003 Mitel Networks Corporation
++# copyright (C) 1999-2005 Mitel Networks Corporation
+ # 
+ # This program is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+@@ -17,29 +17,23 @@
+ # along with this program; if not, write to the Free Software
+ # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA
+ # 
+-# Technical support for this program is available from Mitel Networks 
+-# Please visit our web site www.mitel.com/sme/ for details.
+ #----------------------------------------------------------------------
+ # Restore e-smith config etc from tape using flexbackup
+ 
+ package esmith;
+-use esmith::config;
+-use esmith::util;
+-use esmith::db;
++use esmith::ConfigDB;
+ use esmith::Backup;
+ use strict;
+ 
+-my %conf;
+-tie %conf, 'esmith::config';
++my $conf = esmith::ConfigDB->open_ro or die "Could not open config db";
+ 
+-my $backup_program = db_get_prop(\%conf, 'backup', 'Program');
++my $backup_program = $conf->get('backup')->prop('Program');
+ 
+ unless (defined $backup_program && $backup_program eq 'flexbackup')
+ {
+     exit(0);
+ }
+ 
+-untie %conf;
+ package main;
+ 
+ ###########################################################################
+Index: e-smith-flexbackup/root/etc/e-smith/templates/etc/flexbackup.conf/10Device
+diff -u e-smith-flexbackup/root/etc/e-smith/templates/etc/flexbackup.conf/10Device:1.1.1.1 e-smith-flexbackup/root/etc/e-smith/templates/etc/flexbackup.conf/10Device:1.2
+--- e-smith-flexbackup/root/etc/e-smith/templates/etc/flexbackup.conf/10Device:1.1.1.1	Sun Mar 17 18:43:15 2002
++++ e-smith-flexbackup/root/etc/e-smith/templates/etc/flexbackup.conf/10Device	Tue Jul 19 15:46:21 2005
+@@ -5,13 +5,7 @@
+ #    Linux ftape: /dev/nqft0     FreeBSD SCSI: /dev/nrsa0
+ #
+ # If a directory, archive to files in that directory rather than a device
+-#}
+-$device	 = '{
+-    use esmith::db;
+-
+-    local %services = ( backup => $backup );
+-
+-    my $device = db_get_prop(\%services, 'backup', 'Device')
+-	|| "/dev/nst0";
+-    $OUT .= "$device";
+-}';
++#
++    my $device = $backup{'Device'} || '/dev/nst0';
++    $OUT .= "\$device = '$device';";
++}

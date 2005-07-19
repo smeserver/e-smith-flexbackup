@@ -1,0 +1,13 @@
+Index: e-smith-flexbackup/createlinks
+diff -u e-smith-flexbackup/createlinks:1.1.1.1 e-smith-flexbackup/createlinks:1.2
+--- e-smith-flexbackup/createlinks:1.1.1.1	Sun Mar 17 18:43:15 2002
++++ e-smith-flexbackup/createlinks	Fri Jan 28 11:54:49 2005
+@@ -32,7 +32,6 @@
+ 
+ my $event = "bootstrap-console-save";
+ 
+-event_link("clobber-flexbackup-cron", $event, "65");
+ event_link("conf-flexbackup", $event, "65");
+ 
+ #--------------------------------------------------
+Index: e-smith-flexbackup/e-smith-flexbackup.spec
