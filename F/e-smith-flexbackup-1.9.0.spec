@@ -2,7 +2,7 @@ Summary: Adds daily flexbackup backup to tape to e-smith
 %define name e-smith-flexbackup
 Name: %{name}
 %define version 1.9.0
-%define release 08
+%define release 09
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -15,11 +15,13 @@ Patch3: e-smith-flexbackup-1.9.0-05.mitel_patch
 Patch4: e-smith-flexbackup-1.9.0-06.mitel_patch
 Patch5: e-smith-flexbackup-1.9.0-07.mitel_patch
 Patch6: e-smith-flexbackup-1.9.0-08.mitel_patch
+Patch7: e-smith-flexbackup-1.9.0-09.mitel_patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base, flexbackup, dump
 Requires: buffer
+Requires: mbuffer
 Requires: tar
 Requires: gzip
 Requires: e-smith-backup >= 1.11.0-46
@@ -31,6 +33,12 @@ This package configures flexbackup and sets up a daily cron job
 to run a backup to tape.
 
 %changelog
+* Tue Aug  9 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.9.0-09]
+- Make buffer program to use configurable via a db property -
+  default to 'buffer'.
+- Add Requires: mbuffer [SF: 1252345]
+
 * Tue Jul 19 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.9.0-08]
 - Update to current db access APIs. [SF: 1216546]
@@ -309,6 +317,7 @@ mkdir -p root/etc/e-smith/events/bootstrap-console-save
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 perl createlinks
