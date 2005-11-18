@@ -1,0 +1,15 @@
+Index: e-smith-flexbackup/e-smith-flexbackup.spec
+diff -u /dev/null e-smith-flexbackup/root/etc/e-smith/templates/etc/flexbackup.conf/10prune_tree:1.1
+--- /dev/null	Thu Oct 20 17:29:57 2005
++++ e-smith-flexbackup/root/etc/e-smith/templates/etc/flexbackup.conf/10prune_tree	Thu Oct 20 17:29:13 2005
+@@ -0,0 +1,10 @@
++{
++    my @prunelist = split(',', $flexbackup{Prune} || '');
++    if (scalar @prunelist)
++    {
++	$OUT .= '$prune';
++	$OUT .= "{'/'} = '";
++	$OUT .= join(' ', @prunelist);
++	$OUT .= "';";
++    }
++}

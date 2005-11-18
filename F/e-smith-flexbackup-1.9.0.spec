@@ -2,7 +2,7 @@ Summary: Adds daily flexbackup backup to tape to e-smith
 %define name e-smith-flexbackup
 Name: %{name}
 %define version 1.9.0
-%define release 09
+%define release 11
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -16,6 +16,8 @@ Patch4: e-smith-flexbackup-1.9.0-06.mitel_patch
 Patch5: e-smith-flexbackup-1.9.0-07.mitel_patch
 Patch6: e-smith-flexbackup-1.9.0-08.mitel_patch
 Patch7: e-smith-flexbackup-1.9.0-09.mitel_patch
+Patch8: e-smith-flexbackup-1.9.0-10.mitel_patch
+Patch9: e-smith-flexbackup-1.9.0-11.mitel_patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -33,6 +35,17 @@ This package configures flexbackup and sets up a daily cron job
 to run a backup to tape.
 
 %changelog
+* Thu Oct 20 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.9.0-11]
+- Allow a Prune property to specify a list of subtrees which are
+  not included in the backup. [SF: 1332834]
+
+* Thu Oct 20 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.9.0-10]
+- Don't bother to backup /boot partition, as we never restore it
+  anyway. We expect it all to be installed via CDROM or as part of
+  an upgrade. [SF: 1332834]
+
 * Tue Aug  9 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.9.0-09]
 - Make buffer program to use configurable via a db property -
@@ -318,6 +331,8 @@ mkdir -p root/etc/e-smith/events/bootstrap-console-save
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
+%patch9 -p1
 
 %build
 perl createlinks
