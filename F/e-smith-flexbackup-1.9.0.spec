@@ -2,7 +2,7 @@ Summary: Adds daily flexbackup backup to tape to e-smith
 %define name e-smith-flexbackup
 Name: %{name}
 %define version 1.9.0
-%define release 11
+%define release 11sme01
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -18,6 +18,7 @@ Patch6: e-smith-flexbackup-1.9.0-08.mitel_patch
 Patch7: e-smith-flexbackup-1.9.0-09.mitel_patch
 Patch8: e-smith-flexbackup-1.9.0-10.mitel_patch
 Patch9: e-smith-flexbackup-1.9.0-11.mitel_patch
+Patch100: e-smith-flexbackup-1.9.0-11-prune.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -35,6 +36,10 @@ This package configures flexbackup and sets up a daily cron job
 to run a backup to tape.
 
 %changelog
+* Sat Nov 19 2005 Gordon Rowell <gordonr@gormand.com.au>
+- [1.9.0-11sme01]
+- Output nothing (not '0') when there is no prune list [SF: 1360696]
+
 * Thu Oct 20 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.9.0-11]
 - Allow a Prune property to specify a list of subtrees which are
@@ -333,6 +338,7 @@ mkdir -p root/etc/e-smith/events/bootstrap-console-save
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch100 -p1
 
 %build
 perl createlinks
