@@ -19,3 +19,8 @@ Wed Nov 30 15:08:17 2005                       Gordon Rowell (gordonr)
 
 Auto-commit
 ----------------------------------------------------------------------
+Sat Dec 17 09:53:48 2005                      Charlie Brady (charlieb)
+
+- Remove attempted autdetection of backup type, since it doesn't
+  work. [SME: 340]
+----------------------------------------------------------------------

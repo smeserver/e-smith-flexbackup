@@ -1,0 +1,41 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup mezzanine_patched_e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup
+--- e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup	2005-12-17 09:50:10.000000000 -0500
++++ mezzanine_patched_e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup	2005-12-17 09:49:44.000000000 -0500
+@@ -85,11 +85,8 @@
+ &ProbeTape($cfg::device);
+ &RewindTape($cfg::device);
+ &FSFTape($cfg::device, $tapefile);
+-my $backup_type = &DetermineBackupType($cfg::device);
+-&RewindTape($cfg::device);
+-&FSFTape($cfg::device, $tapefile);
+ &CreateFileList($tempfile);
+-&ExtractFiles($filesystem, $tempfile, $backup_type);
++&ExtractFiles($filesystem, $tempfile);
+ 
+ ###########################################################################
+ 
+@@ -129,7 +126,7 @@
+ {
+     my $device = shift;
+ 
+-    system("/bin/mt -f $device tell > /dev/null 2>&1");
++    system("/bin/mt -f $device status > /dev/null 2>&1");
+ 
+     if ($CHILD_ERROR)
+     {
+@@ -231,7 +228,6 @@
+ {
+     my $filesystem = shift;
+     my $filelist = shift;
+-    my $type = shift || 'dump';
+ 
+     unless (chdir $filesystem)
+     {
+@@ -254,7 +250,6 @@
+     system(
+ 	    "/usr/bin/flexbackup",
+ 	    "-extract",
+-	    "-d", "type=$type",
+ 	    "-flist",
+ 	    $filelist
+ 	);
