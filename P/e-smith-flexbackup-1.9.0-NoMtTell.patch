@@ -1,0 +1,9 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-flexbackup-1.9.0/root/etc/e-smith/templates/etc/flexbackup.conf/10MtTell mezzanine_patched_e-smith-flexbackup-1.9.0/root/etc/e-smith/templates/etc/flexbackup.conf/10MtTell
+--- e-smith-flexbackup-1.9.0/root/etc/e-smith/templates/etc/flexbackup.conf/10MtTell	1970-01-01 10:00:00.000000000 +1000
++++ mezzanine_patched_e-smith-flexbackup-1.9.0/root/etc/e-smith/templates/etc/flexbackup.conf/10MtTell	2005-12-25 15:00:04.714578771 +1100
+@@ -0,0 +1,5 @@
++{
++    $OUT =<<'HERE';
++$mt{'tell'} = 'status';
++HERE
++}
