@@ -2,7 +2,7 @@ Summary: Adds daily flexbackup backup to tape to e-smith
 %define name e-smith-flexbackup
 Name: %{name}
 %define version 1.9.0
-%define release 15
+%define release 16
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -21,6 +21,7 @@ Patch9: e-smith-flexbackup-1.9.0-11.mitel_patch
 Patch10: e-smith-flexbackup-1.9.0-12.mitel_patch
 Patch11: e-smith-flexbackup-1.9.0-backup_type.patch
 Patch12: e-smith-flexbackup-1.9.0-NoMtTell.patch
+Patch13: e-smith-flexbackup-1.9.0-blocksize_test.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -38,6 +39,10 @@ This package configures flexbackup and sets up a daily cron job
 to run a backup to tape.
 
 %changelog
+* Sun Jan  8 2006 Charlie Brady <charlieb@e-smith.com> 1.9.0-16
+- Autodetect tape block size and use that when extracting files, rather
+  that what is in flexbackup.conf [SME: 375]
+
 * Sat Dec 25 2005 Gordon Rowell <gordonr@gormand.com.au> 1.9.0-15
 - Avoid the use of mt tell - use mt status instead [SME: 320]
 
@@ -353,6 +358,7 @@ mkdir -p root/etc/e-smith/events/bootstrap-console-save
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
 
 %build
 perl createlinks
