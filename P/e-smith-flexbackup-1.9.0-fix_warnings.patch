@@ -1,0 +1,21 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup mezzanine_patched_e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup
+--- e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup	2006-01-22 12:08:58.000000000 -0500
++++ mezzanine_patched_e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup	2006-01-22 11:58:55.000000000 -0500
+@@ -61,7 +61,7 @@
+ sub FSFTape ($$);
+ sub DetermineBlocksize($);
+ sub CreateFileList($);
+-sub ExtractFiles($$);
++sub ExtractFiles($$$);
+ sub NotifyAdmin ($$);
+ sub DetermineBackupType;
+ 
+@@ -193,7 +193,7 @@
+ sub DetermineBlocksize($)
+ {
+     my $device = shift;
+-    use File::Temp;
++    use File::Temp 'tempdir';
+     use File::stat;
+ 
+     my $dir = File::Temp::tempdir( CLEANUP => 1 );
