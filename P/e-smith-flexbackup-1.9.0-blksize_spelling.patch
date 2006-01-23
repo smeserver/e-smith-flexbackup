@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup mezzanine_patched_e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup
+--- e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup	2006-01-23 10:28:44.000000000 -0500
++++ mezzanine_patched_e-smith-flexbackup-1.9.0/root/etc/e-smith/events/actions/tape-restore-flexbackup	2006-01-23 10:27:43.000000000 -0500
+@@ -271,7 +271,7 @@
+     system(
+ 	    "/usr/bin/flexbackup",
+ 	    "-extract",
+-	    "-d", "blocksize=$blocksize",
++	    "-d", "blksize=$blocksize",
+ 	    "-flist",
+ 	    $filelist
+ 	);
