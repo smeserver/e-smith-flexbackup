@@ -1,29 +1,13 @@
 Summary: Adds daily flexbackup backup to tape to e-smith
 %define name e-smith-flexbackup
 Name: %{name}
-%define version 1.9.0
-%define release 18
+%define version 1.10.0
+%define release 01
 Version: %{version}
 Release: %{release}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-flexbackup-1.9.0-02.mitel_patch
-Patch1: e-smith-flexbackup-1.9.0-03.mitel_patch
-Patch2: e-smith-flexbackup-1.9.0-04.mitel_patch
-Patch3: e-smith-flexbackup-1.9.0-05.mitel_patch
-Patch4: e-smith-flexbackup-1.9.0-06.mitel_patch
-Patch5: e-smith-flexbackup-1.9.0-07.mitel_patch
-Patch6: e-smith-flexbackup-1.9.0-08.mitel_patch
-Patch7: e-smith-flexbackup-1.9.0-09.mitel_patch
-Patch8: e-smith-flexbackup-1.9.0-10.mitel_patch
-Patch9: e-smith-flexbackup-1.9.0-11.mitel_patch
-Patch10: e-smith-flexbackup-1.9.0-12.mitel_patch
-Patch11: e-smith-flexbackup-1.9.0-backup_type.patch
-Patch12: e-smith-flexbackup-1.9.0-NoMtTell.patch
-Patch13: e-smith-flexbackup-1.9.0-blocksize_test.patch
-Patch14: e-smith-flexbackup-1.9.0-fix_warnings.patch
-Patch15: e-smith-flexbackup-1.9.0-blksize_spelling.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -41,6 +25,9 @@ This package configures flexbackup and sets up a daily cron job
 to run a backup to tape.
 
 %changelog
+* Wed Mar 15 2006 Charlie Brady <charlie_brady@mitel.com> 1.10.0-01
+- Roll stable stream version. [SME: 1016]
+
 * Mon Jan 23 2006 Charlie Brady <charlieb@e-smith.com> 1.9.0-18
 - Fix spelling of blksize parameter when running flexbackup to restore.
   [SME: 375]
@@ -350,26 +337,6 @@ to run a backup to tape.
 
 %prep
 %setup
-mkdir -p root/etc/e-smith/events/restore-tape
-mkdir -p root/etc/e-smith/events/console-save
-mkdir -p root/etc/e-smith/events/conf-backup
-mkdir -p root/etc/e-smith/events/bootstrap-console-save
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
 
 %build
 perl createlinks
