@@ -27,7 +27,7 @@ to run a backup to tape.
 
 %changelog
 * Thu Apr 20 2006 Charlie Brady <charlie_brady@mitel.com> 1.10.0-02
-- Remove redundant "mt fsf" from DetermineBlocksize(). [SME: 1122]
+- Remove redundant "mt fsf" from DetermineBlocksize(). [SME: 1191]
 
 * Wed Mar 15 2006 Charlie Brady <charlie_brady@mitel.com> 1.10.0-01
 - Roll stable stream version. [SME: 1016]
