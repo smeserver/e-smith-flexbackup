@@ -2,14 +2,14 @@ Summary: Adds daily flexbackup backup to tape to e-smith
 %define name e-smith-flexbackup
 Name: %{name}
 %define version 1.10.0
-%define release 02
+%define release 3
 Version: %{version}
-Release: %{release}
+Release: %smerelease %{release}
+Packager: %{_packager}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-flexbackup-1.10.0-no_fsf.patch
-Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base, flexbackup, dump
@@ -26,6 +26,10 @@ This package configures flexbackup and sets up a daily cron job
 to run a backup to tape.
 
 %changelog
+* Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
+- Update to new release naming.  No functional changes.
+- Make Packager generic
+
 * Thu Apr 20 2006 Charlie Brady <charlie_brady@mitel.com> 1.10.0-02
 - Remove redundant "mt fsf" from DetermineBlocksize(). [SME: 1191]
 
