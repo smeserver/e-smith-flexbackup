@@ -4,8 +4,7 @@ Name: %{name}
 %define version 1.10.0
 %define release 3
 Version: %{version}
-Release: %smerelease %{release}
-Packager: %{_packager}
+Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
@@ -19,6 +18,7 @@ Requires: tar
 Requires: gzip
 Requires: e-smith-backup >= 1.11.0-46
 Requires: e-smith-lib >= 1.15.1-19
+BuildRequires: e-smith-devtools >= 1.13.1-03
 AutoReqProv: no
 
 %description
@@ -26,6 +26,9 @@ This package configures flexbackup and sets up a daily cron job
 to run a backup to tape.
 
 %changelog
+* Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
+- Clean up spec so package can be built by koji/plague
+
 * Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
 - Update to new release naming.  No functional changes.
 - Make Packager generic
