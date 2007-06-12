@@ -1,0 +1,11 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-flexbackup-1.10.0/root/etc/e-smith/events/actions/tape-restore-flexbackup mezzanine_patched_e-smith-flexbackup-1.10.0/root/etc/e-smith/events/actions/tape-restore-flexbackup
+--- e-smith-flexbackup-1.10.0/root/etc/e-smith/events/actions/tape-restore-flexbackup	2006-03-15 15:18:05.000000000 -0500
++++ mezzanine_patched_e-smith-flexbackup-1.10.0/root/etc/e-smith/events/actions/tape-restore-flexbackup	2006-04-20 12:09:28.000000000 -0400
+@@ -199,7 +199,6 @@
+     my $dir = File::Temp::tempdir( CLEANUP => 1 );
+     my $file = "$dir/xx";
+ 
+-    system("mt", "-f", "$device", "fsf", "1");
+     system("dd", "if=$device", "bs=1M", "count=1", "of=$file");
+ 
+     my $st = stat($file) or die "No $file: $!";
