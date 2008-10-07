@@ -1,14 +1,15 @@
+# $Id: e-smith-flexbackup.spec,v 1.2 2008/10/07 18:14:27 slords Exp $
+
 Summary: Adds daily flexbackup backup to tape to e-smith
 %define name e-smith-flexbackup
 Name: %{name}
-%define version 1.10.0
-%define release 3
+%define version 2.0.0
+%define release 1
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-flexbackup-1.10.0-no_fsf.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base, flexbackup, dump
@@ -26,6 +27,9 @@ This package configures flexbackup and sets up a daily cron job
 to run a backup to tape.
 
 %changelog
+* Tue Oct 7 2008 Shad L. Lords <slords@mail.com> 2.0.0-1.sme
+- Roll new stream to separate sme7/sme8 trees [SME: 4633]
+
 * Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
 - Clean up spec so package can be built by koji/plague
 
@@ -348,7 +352,6 @@ to run a backup to tape.
 
 %prep
 %setup
-%patch0 -p1
 
 %build
 perl createlinks
